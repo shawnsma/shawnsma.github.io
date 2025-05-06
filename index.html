@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shawn Ma - Personal Website</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <style>
       :root {
         --primary-color: #000000;
@@ -95,14 +99,16 @@
 
       .links {
         display: flex;
-        gap: 1.5rem;
+        gap: 2rem;
         justify-content: center;
         flex-wrap: wrap;
         animation: slideUp 1s ease-out 0.6s both;
       }
 
       .link-button {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
         padding: 1rem 2rem;
         border: 2px solid var(--primary-color);
         color: var(--primary-color);
@@ -113,6 +119,16 @@
         overflow: hidden;
         background: transparent;
         z-index: 1;
+        border-radius: 50px;
+      }
+
+      .link-button i {
+        font-size: 1.2rem;
+        transition: transform 0.4s ease;
+      }
+
+      .link-button:hover i {
+        transform: scale(1.2);
       }
 
       .link-button::before {
@@ -125,6 +141,7 @@
         background: var(--primary-color);
         transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: -1;
+        border-radius: 50px;
       }
 
       .link-button:hover {
@@ -135,6 +152,25 @@
 
       .link-button:hover::before {
         width: 100%;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .social-icon {
+        font-size: 1.8rem;
+        color: var(--primary-color);
+        transition: all 0.3s ease;
+        opacity: 0.8;
+      }
+
+      .social-icon:hover {
+        transform: translateY(-3px);
+        opacity: 1;
       }
 
       section {
@@ -240,11 +276,41 @@
           <h1>Shawn Ma</h1>
           <p class="subtitle">Computer Science Student</p>
           <div class="links">
-            <a href="#" class="link-button">Resume</a>
-            <a href="https://github.com/shawnshep" class="link-button"
-              >GitHub</a
+            <a href="#" class="link-button">
+              <i class="fas fa-file-alt"></i>
+              Resume
+            </a>
+            <a href="https://github.com/shawnshep" class="link-button">
+              <i class="fab fa-github"></i>
+              GitHub
+            </a>
+            <a href="mailto:shawn.ma@duke.edu" class="link-button">
+              <i class="fas fa-envelope"></i>
+              Contact
+            </a>
+          </div>
+          <div class="social-links">
+            <a
+              href="https://linkedin.com/in/your-profile"
+              target="_blank"
+              class="social-icon"
             >
-            <a href="mailto:shawnma@example.com" class="link-button">Contact</a>
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="https://twitter.com/your-handle"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://instagram.com/your-handle"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
           </div>
         </div>
       </div>
