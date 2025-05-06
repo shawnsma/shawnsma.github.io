@@ -203,6 +203,7 @@
         display: flex;
         flex-direction: row;
         align-items: flex-end;
+        justify-content: center;
         gap: 4rem;
         margin-top: 1.2rem;
       }
@@ -575,21 +576,38 @@
     <section>
       <div class="container">
         <h2 class="section-title">Not Computer Science</h2>
-        <div class="card-section" style="max-width: 600px; margin: 0 auto">
-          <h3 style="text-align: center">Writing Samples</h3>
-          <div class="projects-list">
-            <a href="#" class="project-card">
-              <h3>Sample 1</h3>
-              <p>Short description of writing sample 1.</p>
-            </a>
-            <a href="#" class="project-card">
-              <h3>Sample 2</h3>
-              <p>Short description of writing sample 2.</p>
-            </a>
-            <a href="#" class="project-card">
-              <h3>Sample 3</h3>
-              <p>Short description of writing sample 3.</p>
-            </a>
+        <div class="two-column-section">
+          <div class="column">
+            <div class="card-section">
+              <h3 style="text-align: center">Writing Samples</h3>
+              <div class="projects-list">
+                <div style="display: flex; gap: 1.5rem">
+                  <a href="#" class="project-card" style="flex: 1">
+                    <h3>Academic Paper</h3>
+                    <p>Short description of writing sample 1.</p>
+                  </a>
+                  <a href="#" class="project-card" style="flex: 1">
+                    <h3>Poetry</h3>
+                    <p>Short description of writing sample 2.</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card-section">
+              <h3 style="text-align: center">Other Interests</h3>
+              <div class="projects-list">
+                <a href="#" class="project-card">
+                  <h3>Interest 1</h3>
+                  <p>Description of non-CS interest or activity.</p>
+                </a>
+                <a href="#" class="project-card">
+                  <h3>Interest 2</h3>
+                  <p>Description of non-CS interest or activity.</p>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
