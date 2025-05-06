@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Name - Personal Website</title>
+    <title>Shawn Ma - Personal Website</title>
     <style>
       :root {
         --primary-color: #000000;
         --secondary-color: #333333;
         --background-color: #ffffff;
         --accent-color: #666666;
+        --gradient-start: #f8f8f8;
+        --gradient-end: #ffffff;
       }
 
       * {
@@ -23,7 +25,12 @@
           Roboto, sans-serif;
         line-height: 1.6;
         color: var(--primary-color);
-        background-color: var(--background-color);
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start) 0%,
+          var(--gradient-end) 100%
+        );
+        min-height: 100vh;
       }
 
       .container {
@@ -38,23 +45,52 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at center,
+          rgba(0, 0, 0, 0.03) 0%,
+          rgba(0, 0, 0, 0) 70%
+        );
+        z-index: 0;
       }
 
       .hero {
         padding: 2rem 0;
+        position: relative;
+        z-index: 1;
       }
 
       h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
+        font-size: 4rem;
+        font-weight: 800;
         margin-bottom: 1rem;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.03em;
+        background: linear-gradient(
+          45deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeIn 1s ease-out;
       }
 
       .subtitle {
         font-size: 1.5rem;
         color: var(--secondary-color);
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
+        font-weight: 500;
+        animation: slideUp 1s ease-out 0.3s both;
       }
 
       .links {
@@ -62,58 +98,137 @@
         gap: 1.5rem;
         justify-content: center;
         flex-wrap: wrap;
+        animation: slideUp 1s ease-out 0.6s both;
       }
 
       .link-button {
         display: inline-block;
-        padding: 0.8rem 1.5rem;
+        padding: 1rem 2rem;
         border: 2px solid var(--primary-color);
         color: var(--primary-color);
         text-decoration: none;
         font-weight: 500;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        background: transparent;
+        z-index: 1;
+      }
+
+      .link-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: var(--primary-color);
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: -1;
       }
 
       .link-button:hover {
-        background-color: var(--primary-color);
         color: var(--background-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .link-button:hover::before {
+        width: 100%;
       }
 
       section {
-        padding: 5rem 0;
+        padding: 6rem 0;
+        position: relative;
+      }
+
+      section:nth-child(even) {
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start) 0%,
+          var(--gradient-end) 100%
+        );
       }
 
       .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
         text-align: center;
+        position: relative;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--primary-color);
       }
 
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
         margin-top: 2rem;
       }
 
       .project-card {
-        padding: 1.5rem;
-        border: 1px solid var(--accent-color);
-        border-radius: 4px;
-        transition: transform 0.3s ease;
+        padding: 2rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: var(--background-color);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
       }
 
       .project-card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .project-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       @media (max-width: 768px) {
         h1 {
-          font-size: 2.5rem;
+          font-size: 3rem;
         }
 
         .subtitle {
           font-size: 1.2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
         }
       }
     </style>
@@ -122,16 +237,14 @@
     <header>
       <div class="container">
         <div class="hero">
-          <h1>Your Name</h1>
+          <h1>Shawn Ma</h1>
           <p class="subtitle">Computer Science Student</p>
           <div class="links">
             <a href="#" class="link-button">Resume</a>
-            <a href="https://github.com/yourusername" class="link-button"
+            <a href="https://github.com/shawnshep" class="link-button"
               >GitHub</a
             >
-            <a href="mailto:your.email@example.com" class="link-button"
-              >Contact</a
-            >
+            <a href="mailto:shawnma@example.com" class="link-button">Contact</a>
           </div>
         </div>
       </div>
@@ -140,10 +253,17 @@
     <section>
       <div class="container">
         <h2 class="section-title">About Me</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto">
+        <p
+          style="
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+          "
+        >
           I'm a computer science student passionate about technology and
           software development. I love solving complex problems and building
-          innovative solutions.
+          innovative solutions that make a difference.
         </p>
       </div>
     </section>
