@@ -202,6 +202,71 @@
         margin-top: 2rem;
       }
 
+      .two-column-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        margin-top: 2rem;
+      }
+
+      .column {
+        padding: 2rem;
+        background: var(--background-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .course-item {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .course-item:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .course-name {
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
+
+      .course-prof {
+        color: var(--secondary-color);
+        font-size: 0.9rem;
+      }
+
+      .languages-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .language-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .language-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        transition: transform 0.3s ease;
+      }
+
+      .language-icon:hover {
+        transform: scale(1.1);
+      }
+
+      .language-name {
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
       .project-card {
         padding: 2rem;
         border: 1px solid rgba(0, 0, 0, 0.1);
@@ -259,6 +324,11 @@
         .section-title {
           font-size: 2rem;
         }
+
+        .two-column-section {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
       }
     </style>
   </head>
@@ -274,7 +344,7 @@
               Resume
             </a>
             <a href="https://www.linkedin.com/in/shawnsma/" class="link-button">
-              <i class="fas fa-linkedin"></i>
+              <i class="fab fa-linkedin"></i>
               LinkedIn
             </a>
             <a href="https://github.com/shawnshep" class="link-button">
@@ -310,6 +380,108 @@
           and innovative technology to solve complex business challenges.
           Skilled in Python, Java, C/C++, and modern ML frameworks.
         </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Skills & Education</h2>
+        <div class="two-column-section">
+          <div class="column">
+            <h3 style="margin-bottom: 2rem; font-size: 1.8rem">Languages</h3>
+            <div class="languages-grid">
+              <div class="language-item">
+                <i class="fab fa-python language-icon"></i>
+                <span class="language-name">Python</span>
+              </div>
+              <div class="language-item">
+                <i class="fab fa-java language-icon"></i>
+                <span class="language-name">Java</span>
+              </div>
+              <div class="language-item">
+                <i class="fas fa-code language-icon"></i>
+                <span class="language-name">C/C++</span>
+              </div>
+              <div class="language-item">
+                <i class="fab fa-html5 language-icon"></i>
+                <span class="language-name">HTML</span>
+              </div>
+              <div class="language-item">
+                <i class="fab fa-css3-alt language-icon"></i>
+                <span class="language-name">CSS</span>
+              </div>
+              <div class="language-item">
+                <i class="fab fa-js language-icon"></i>
+                <span class="language-name">JavaScript</span>
+              </div>
+              <div class="language-item">
+                <i class="fas fa-database language-icon"></i>
+                <span class="language-name">SQL</span>
+              </div>
+              <div class="language-item">
+                <i class="fas fa-chart-line language-icon"></i>
+                <span class="language-name">R</span>
+              </div>
+              <div class="language-item">
+                <i class="fab fa-swift language-icon"></i>
+                <span class="language-name">Swift</span>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <h3 style="margin-bottom: 2rem; font-size: 1.8rem">Courses</h3>
+            <div class="courses-list">
+              <div class="course-item">
+                <div class="course-name">Machine Learning (Graduate level)</div>
+                <div class="course-prof">Prof. Cynthia Rudin</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Computer Vision (Graduate level)</div>
+                <div class="course-prof">Prof. Carlo Tomasi</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Natural Language Processing</div>
+                <div class="course-prof">Prof. Mary Osborne</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Artificial Intelligence</div>
+                <div class="course-prof">Prof. Tananun Songdechakraiwut</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Computer Network Architecture</div>
+                <div class="course-prof">Prof. Bruce Maggs</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Blockchain</div>
+                <div class="course-prof">Prof. Kartik Nayak</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Computer Security</div>
+                <div class="course-prof">Prof. Michael Reiter</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Design and Analysis of Algorithms</div>
+                <div class="course-prof">Prof. Kamesh Munagala</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Database Systems</div>
+                <div class="course-prof">Prof. Sudeepa Roy</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Computer Architecture</div>
+                <div class="course-prof">Prof. Daniel Sorin</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Discrete Math</div>
+                <div class="course-prof">Prof. Kate O'Hanlon</div>
+              </div>
+              <div class="course-item">
+                <div class="course-name">Data Structures and Algorithms</div>
+                <div class="course-prof">Prof. Owen Astrachan</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
