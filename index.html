@@ -22,6 +22,8 @@
         --accent-color: #666666;
         --gradient-start: #f8f8f8;
         --gradient-end: #ffffff;
+        --decor1: rgba(0, 0, 0, 0.03);
+        --decor2: rgba(0, 0, 0, 0.06);
       }
 
       * {
@@ -40,12 +42,51 @@
           var(--gradient-end) 100%
         );
         min-height: 100vh;
+        position: relative;
+      }
+
+      /* Decorative background shapes */
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        z-index: 0;
+        pointer-events: none;
+      }
+      body::before {
+        top: -120px;
+        left: -120px;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(
+          circle,
+          var(--decor1) 60%,
+          transparent 100%
+        );
+        border-radius: 50%;
+      }
+      body::after {
+        bottom: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          var(--decor2) 60%,
+          transparent 100%
+        );
+        border-radius: 50%;
       }
 
       .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.97);
+        border-radius: 18px;
+        box-shadow: 0 6px 32px 0 rgba(0, 0, 0, 0.04);
       }
 
       header {
@@ -161,7 +202,7 @@
       }
 
       section {
-        padding: 6rem 0;
+        padding: 3.5rem 0 2.5rem 0;
         position: relative;
       }
 
@@ -175,7 +216,7 @@
 
       .section-title {
         font-size: 2.5rem;
-        margin-bottom: 3rem;
+        margin-bottom: 2.2rem;
         text-align: center;
         position: relative;
         display: inline-block;
@@ -193,26 +234,21 @@
         width: 60px;
         height: 3px;
         background: var(--primary-color);
-      }
-
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 2.5rem;
-        margin-top: 2rem;
+        opacity: 0.08;
+        border-radius: 2px;
       }
 
       .two-column-section {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        margin-top: 2rem;
+        gap: 2.5rem;
+        margin-top: 1.5rem;
       }
 
       .column {
         display: flex;
         flex-direction: column;
-        gap: 2.5rem;
+        gap: 1.5rem;
         padding: 0;
         background: none;
         box-shadow: none;
@@ -220,20 +256,36 @@
 
       .card-section {
         background: var(--background-color);
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        position: relative;
       }
-
+      .card-section:not(:last-child)::after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 80%;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--accent-color) 40%,
+          transparent 100%
+        );
+        margin: 1.5rem auto 0 auto;
+        opacity: 0.12;
+      }
       .card-section h3 {
-        margin-bottom: 2rem;
-        font-size: 1.8rem;
+        margin-bottom: 1.2rem;
+        font-size: 1.3rem;
       }
 
       .languages-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
+        gap: 1.2rem;
         text-align: center;
         margin-bottom: 0;
       }
@@ -263,58 +315,53 @@
       .projects-list {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
       }
 
       .project-card {
-        padding: 1.5rem;
-        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 1.1rem 1.2rem;
+        border: 1px solid rgba(0, 0, 0, 0.08);
         border-radius: 8px;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         background: var(--background-color);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
         text-decoration: none;
         color: var(--primary-color);
       }
-
       .project-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        border-color: var(--accent-color);
       }
-
       .project-card h3 {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
         color: var(--primary-color);
         font-weight: 600;
       }
-
       .project-card p {
         font-weight: 400;
         color: var(--secondary-color);
-        font-size: 0.95rem;
+        font-size: 0.93rem;
       }
 
       .course-item {
-        margin-bottom: 1.5rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
       }
-
       .course-item:last-child {
         margin-bottom: 0;
         padding-bottom: 0;
         border-bottom: none;
       }
-
       .course-name {
         font-weight: 600;
       }
-
       .course-prof {
         color: var(--secondary-color);
         font-size: 0.9rem;
@@ -357,11 +404,11 @@
 
         .two-column-section {
           grid-template-columns: 1fr;
-          gap: 2rem;
+          gap: 1.2rem;
         }
 
         .column {
-          gap: 2rem;
+          gap: 1.2rem;
         }
 
         .course-item {
@@ -482,8 +529,7 @@
                 >
                   <h3>LinkedIn Scraper</h3>
                   <p>
-                    Web scraper in both Google Chrome and Safari using Selenium
-                    and BeautifulSoup.
+                    Scrapes profiles in bulk using Selenium and BeautifulSoup.
                   </p>
                 </a>
                 <a
@@ -491,19 +537,14 @@
                   class="project-card"
                 >
                   <h3>Automated Market Maker</h3>
-                  <p>
-                    Automated market maker for a hypothetical token on the
-                    Solana blockchain in Solidity.
-                  </p>
+                  <p>Enables decentralized trading on Solana using Solidity.</p>
                 </a>
                 <a
                   href="https://github.com/shawnsma/Computer_Networks"
                   class="project-card"
                 >
                   <h3>CDN Edge Server</h3>
-                  <p>
-                    Proxy server that caches and delivers web content in Python.
-                  </p>
+                  <p>Caches and delivers web content using Python.</p>
                 </a>
               </div>
             </div>
