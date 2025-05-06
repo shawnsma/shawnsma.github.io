@@ -202,18 +202,19 @@
       .two-column-section {
         display: flex;
         flex-direction: row;
-        align-items: flex-end;
+        justify-content: center;
+        align-items: flex-start;
         gap: 4rem;
         margin-top: 1.2rem;
       }
 
-      .column {
+      .not-cs-section {
         display: flex;
-        flex-direction: column;
-        gap: 2.5rem;
-        padding: 0;
-        background: none;
-        box-shadow: none;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 4rem;
+        margin-top: 1.2rem;
       }
 
       .card-section {
@@ -221,12 +222,41 @@
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         padding: 2rem;
+        min-width: 320px;
+        flex: 1 1 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .card-section h3 {
         font-size: 1.8rem;
         margin: 0 auto 1.5rem auto;
         text-align: center;
+      }
+
+      .writing-links {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+        justify-content: center;
+      }
+
+      .writing-link {
+        display: inline-block;
+        padding: 0.5rem 1.2rem;
+        border: 1px solid var(--primary-color);
+        border-radius: 30px;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s;
+        background: var(--background-color);
+      }
+
+      .writing-link:hover {
+        background: var(--primary-color);
+        color: var(--background-color);
       }
 
       .languages-grid {
@@ -356,13 +386,14 @@
           font-size: 2rem;
         }
 
-        .two-column-section {
+        .two-column-section,
+        .not-cs-section {
           flex-direction: column;
           align-items: stretch;
           gap: 2rem;
         }
 
-        .column {
+        .card-section {
           gap: 2rem;
         }
 
@@ -378,7 +409,8 @@
       }
 
       @media (max-width: 900px) {
-        .two-column-section {
+        .two-column-section,
+        .not-cs-section {
           flex-direction: column;
           align-items: stretch;
           gap: 2rem;
@@ -437,136 +469,73 @@
       <div class="container">
         <h2 class="section-title">Computer Science</h2>
         <div class="two-column-section">
-          <div class="column">
-            <div class="card-section">
-              <h3>Languages</h3>
-              <div class="languages-grid">
-                <div class="language-item">
-                  <i class="fab fa-python language-icon"></i>
-                  <span class="language-name">Python</span>
-                </div>
-                <div class="language-item">
-                  <i class="fab fa-java language-icon"></i>
-                  <span class="language-name">Java</span>
-                </div>
-                <div class="language-item">
-                  <i class="fas fa-c language-icon"></i>
-                  <span class="language-name">C/C++</span>
-                </div>
-                <div class="language-item">
-                  <i class="fab fa-html5 language-icon"></i>
-                  <span class="language-name">HTML</span>
-                </div>
-                <div class="language-item">
-                  <i class="fab fa-css3-alt language-icon"></i>
-                  <span class="language-name">CSS</span>
-                </div>
-                <div class="language-item">
-                  <i class="fab fa-js language-icon"></i>
-                  <span class="language-name">JavaScript</span>
-                </div>
-                <div class="language-item">
-                  <i class="fas fa-database language-icon"></i>
-                  <span class="language-name">SQL</span>
-                </div>
-                <div class="language-item">
-                  <i class="fas fa-r language-icon"></i>
-                  <span class="language-name">R</span>
-                </div>
-                <div class="language-item">
-                  <i class="fab fa-swift language-icon"></i>
-                  <span class="language-name">Swift</span>
-                </div>
+          <div class="card-section">
+            <h3>Languages</h3>
+            <div class="languages-grid">
+              <div class="language-item">
+                <i class="fab fa-python language-icon"></i>
+                <span class="language-name">Python</span>
               </div>
-            </div>
-            <div class="card-section">
-              <h3>Projects</h3>
-              <div class="projects-list">
-                <a
-                  href="https://github.com/shawnsma/Linkedin_Scraper"
-                  class="project-card"
-                >
-                  <h3>LinkedIn Scraper</h3>
-                  <p>
-                    Scrapes profiles in bulk using Selenium and BeautifulSoup.
-                  </p>
-                </a>
-                <a
-                  href="https://github.com/shawnsma/Blockchain"
-                  class="project-card"
-                >
-                  <h3>Automated Market Maker</h3>
-                  <p>Enables decentralized trading on Solana using Solidity.</p>
-                </a>
-                <a
-                  href="https://github.com/shawnsma/Computer_Networks"
-                  class="project-card"
-                >
-                  <h3>CDN Edge Server</h3>
-                  <p>Caches and delivers web content using Python.</p>
-                </a>
+              <div class="language-item">
+                <i class="fab fa-java language-icon"></i>
+                <span class="language-name">Java</span>
+              </div>
+              <div class="language-item">
+                <i class="fas fa-c language-icon"></i>
+                <span class="language-name">C/C++</span>
+              </div>
+              <div class="language-item">
+                <i class="fab fa-html5 language-icon"></i>
+                <span class="language-name">HTML</span>
+              </div>
+              <div class="language-item">
+                <i class="fab fa-css3-alt language-icon"></i>
+                <span class="language-name">CSS</span>
+              </div>
+              <div class="language-item">
+                <i class="fab fa-js language-icon"></i>
+                <span class="language-name">JavaScript</span>
+              </div>
+              <div class="language-item">
+                <i class="fas fa-database language-icon"></i>
+                <span class="language-name">SQL</span>
+              </div>
+              <div class="language-item">
+                <i class="fas fa-r language-icon"></i>
+                <span class="language-name">R</span>
+              </div>
+              <div class="language-item">
+                <i class="fab fa-swift language-icon"></i>
+                <span class="language-name">Swift</span>
               </div>
             </div>
           </div>
-          <div class="column">
-            <div class="card-section">
-              <h3>Courses</h3>
-              <div class="courses-list">
-                <div class="course-item">
-                  <div class="course-name">
-                    Machine Learning (Graduate level)
-                  </div>
-                  <div class="course-prof">Prof. Cynthia Rudin</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">
-                    Computer Vision (Graduate level)
-                  </div>
-                  <div class="course-prof">Prof. Carlo Tomasi</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">Natural Language Processing</div>
-                  <div class="course-prof">Prof. Mary Osborne</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">Artificial Intelligence</div>
-                  <div class="course-prof">Prof. Tananun Songdechakraiwut</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">Computer Network Architecture</div>
-                  <div class="course-prof">Prof. Bruce Maggs</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">Blockchain</div>
-                  <div class="course-prof">Prof. Kartik Nayak</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">Computer Security</div>
-                  <div class="course-prof">Prof. Michael Reiter</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">
-                    Design and Analysis of Algorithms
-                  </div>
-                  <div class="course-prof">Prof. Kamesh Munagala</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">Database Systems</div>
-                  <div class="course-prof">Prof. Sudeepa Roy</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">Computer Architecture</div>
-                  <div class="course-prof">Prof. Daniel Sorin</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">Discrete Math</div>
-                  <div class="course-prof">Prof. Kate O'Hanlon</div>
-                </div>
-                <div class="course-item">
-                  <div class="course-name">Data Structures and Algorithms</div>
-                  <div class="course-prof">Prof. Owen Astrachan</div>
-                </div>
-              </div>
+          <div class="card-section">
+            <h3>Projects</h3>
+            <div class="projects-list">
+              <a
+                href="https://github.com/shawnsma/Linkedin_Scraper"
+                class="project-card"
+              >
+                <h3>LinkedIn Scraper</h3>
+                <p>
+                  Scrapes profiles in bulk using Selenium and BeautifulSoup.
+                </p>
+              </a>
+              <a
+                href="https://github.com/shawnsma/Blockchain"
+                class="project-card"
+              >
+                <h3>Automated Market Maker</h3>
+                <p>Enables decentralized trading on Solana using Solidity.</p>
+              </a>
+              <a
+                href="https://github.com/shawnsma/Computer_Networks"
+                class="project-card"
+              >
+                <h3>CDN Edge Server</h3>
+                <p>Caches and delivers web content using Python.</p>
+              </a>
             </div>
           </div>
         </div>
@@ -575,21 +544,59 @@
     <section>
       <div class="container">
         <h2 class="section-title">Not Computer Science</h2>
-        <div class="card-section" style="max-width: 600px; margin: 0 auto">
-          <h3 style="text-align: center">Writing Samples</h3>
-          <div class="projects-list">
-            <a href="#" class="project-card">
-              <h3>Sample 1</h3>
-              <p>Short description of writing sample 1.</p>
-            </a>
-            <a href="#" class="project-card">
-              <h3>Sample 2</h3>
-              <p>Short description of writing sample 2.</p>
-            </a>
-            <a href="#" class="project-card">
-              <h3>Sample 3</h3>
-              <p>Short description of writing sample 3.</p>
-            </a>
+        <div class="not-cs-section">
+          <div class="card-section">
+            <h3>Writing Samples</h3>
+            <div class="projects-list">
+              <div style="margin-bottom: 1.2rem">
+                <div style="font-weight: 600; margin-bottom: 0.3rem">
+                  Sample 1
+                </div>
+                <div class="writing-links">
+                  <a href="#" class="writing-link">PDF</a>
+                  <a href="#" class="writing-link">Online</a>
+                </div>
+                <div
+                  style="
+                    color: var(--secondary-color);
+                    font-size: 0.95rem;
+                    text-align: center;
+                  "
+                >
+                  Short description of writing sample 1.
+                </div>
+              </div>
+              <div>
+                <div style="font-weight: 600; margin-bottom: 0.3rem">
+                  Sample 2
+                </div>
+                <div class="writing-links">
+                  <a href="#" class="writing-link">PDF</a>
+                </div>
+                <div
+                  style="
+                    color: var(--secondary-color);
+                    font-size: 0.95rem;
+                    text-align: center;
+                  "
+                >
+                  Short description of writing sample 2.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-section">
+            <h3>Other Interests</h3>
+            <div
+              style="
+                color: var(--secondary-color);
+                font-size: 0.98rem;
+                text-align: center;
+              "
+            >
+              Placeholder for other non-CS content (e.g., art, music,
+              volunteering, etc.).
+            </div>
           </div>
         </div>
       </div>
