@@ -220,6 +220,10 @@
         margin-bottom: 1.5rem;
         padding-bottom: 1.5rem;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
       }
 
       .course-item:last-child {
@@ -230,12 +234,13 @@
 
       .course-name {
         font-weight: 600;
-        margin-bottom: 0.3rem;
       }
 
       .course-prof {
         color: var(--secondary-color);
         font-size: 0.9rem;
+        text-align: right;
+        white-space: nowrap;
       }
 
       .languages-grid {
@@ -329,6 +334,16 @@
           grid-template-columns: 1fr;
           gap: 2rem;
         }
+
+        .course-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.3rem;
+        }
+
+        .course-prof {
+          text-align: left;
+        }
       }
     </style>
   </head>
@@ -337,7 +352,7 @@
       <div class="container">
         <div class="hero">
           <h1>Shawn Ma</h1>
-          <p class="subtitle">Duke CS '26, concentrating in AI & ML</p>
+          <p class="subtitle">Duke CS '26, AI & ML Concentration</p>
           <div class="links">
             <a href="#" class="link-button">
               <i class="fas fa-file-alt"></i>
@@ -385,7 +400,7 @@
 
     <section>
       <div class="container">
-        <h2 class="section-title">Skills & Education</h2>
+        <h2 class="section-title">Computer Science</h2>
         <div class="two-column-section">
           <div class="column">
             <h3 style="margin-bottom: 2rem; font-size: 1.8rem">Languages</h3>
@@ -399,7 +414,7 @@
                 <span class="language-name">Java</span>
               </div>
               <div class="language-item">
-                <i class="fas fa-code language-icon"></i>
+                <i class="fas fa-c language-icon"></i>
                 <span class="language-name">C/C++</span>
               </div>
               <div class="language-item">
@@ -419,7 +434,7 @@
                 <span class="language-name">SQL</span>
               </div>
               <div class="language-item">
-                <i class="fas fa-chart-line language-icon"></i>
+                <i class="fas fa-r language-icon"></i>
                 <span class="language-name">R</span>
               </div>
               <div class="language-item">
