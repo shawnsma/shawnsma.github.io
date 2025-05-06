@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shawn Ma - Personal Website</title>
+    <title>Shawn Ma</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
     />
     <style>
       :root {
@@ -25,8 +31,7 @@
       }
 
       body {
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, sans-serif;
+        font-family: "Playfair Display", serif;
         line-height: 1.6;
         color: var(--primary-color);
         background: linear-gradient(
@@ -114,6 +119,7 @@
         color: var(--primary-color);
         text-decoration: none;
         font-weight: 500;
+        font-family: "Playfair Display", serif;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
@@ -154,25 +160,6 @@
         width: 100%;
       }
 
-      .social-links {
-        display: flex;
-        gap: 1.5rem;
-        justify-content: center;
-        margin-top: 2rem;
-      }
-
-      .social-icon {
-        font-size: 1.8rem;
-        color: var(--primary-color);
-        transition: all 0.3s ease;
-        opacity: 0.8;
-      }
-
-      .social-icon:hover {
-        transform: translateY(-3px);
-        opacity: 1;
-      }
-
       section {
         padding: 6rem 0;
         position: relative;
@@ -194,6 +181,7 @@
         display: inline-block;
         left: 50%;
         transform: translateX(-50%);
+        font-weight: 700;
       }
 
       .section-title::after {
@@ -232,6 +220,11 @@
         font-size: 1.5rem;
         margin-bottom: 1rem;
         color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      .project-card p {
+        font-weight: 400;
       }
 
       @keyframes fadeIn {
@@ -274,11 +267,15 @@
       <div class="container">
         <div class="hero">
           <h1>Shawn Ma</h1>
-          <p class="subtitle">Computer Science Student</p>
+          <p class="subtitle">Duke CS '26, concentrating in AI & ML</p>
           <div class="links">
             <a href="#" class="link-button">
               <i class="fas fa-file-alt"></i>
               Resume
+            </a>
+            <a href="https://www.linkedin.com/in/shawnsma/" class="link-button">
+              <i class="fas fa-linkedin"></i>
+              LinkedIn
             </a>
             <a href="https://github.com/shawnshep" class="link-button">
               <i class="fab fa-github"></i>
@@ -287,29 +284,6 @@
             <a href="mailto:shawn.ma@duke.edu" class="link-button">
               <i class="fas fa-envelope"></i>
               Contact
-            </a>
-          </div>
-          <div class="social-links">
-            <a
-              href="https://linkedin.com/in/your-profile"
-              target="_blank"
-              class="social-icon"
-            >
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a
-              href="https://twitter.com/your-handle"
-              target="_blank"
-              class="social-icon"
-            >
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a
-              href="https://instagram.com/your-handle"
-              target="_blank"
-              class="social-icon"
-            >
-              <i class="fab fa-instagram"></i>
             </a>
           </div>
         </div>
@@ -327,9 +301,14 @@
             font-size: 1.1rem;
           "
         >
-          I'm a computer science student passionate about technology and
-          software development. I love solving complex problems and building
-          innovative solutions that make a difference.
+          AI & Data engineer with previous professional experience at World
+          Salon and InfiniteUp. Led development of machine learning systems and
+          scalable cloud infrastructure while contributing to funding rounds.
+          Previously conducted data analytics at KPMG focusing on predictive
+          modeling. Serving as Teaching Assistant for Discrete Mathematics and
+          Computer Security. Passionate about leveraging artificial intelligence
+          and innovative technology to solve complex business challenges.
+          Skilled in Python, Java, C/C++, and modern ML frameworks.
         </p>
       </div>
     </section>
