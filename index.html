@@ -161,21 +161,16 @@
       }
 
       section {
-        padding: 6rem 0;
+        padding: 3.5rem 0 2rem 0;
         position: relative;
       }
-
-      section:nth-child(even) {
-        background: linear-gradient(
-          135deg,
-          var(--gradient-start) 0%,
-          var(--gradient-end) 100%
-        );
+      section + section {
+        margin-top: -1.5rem;
       }
 
       .section-title {
         font-size: 2.5rem;
-        margin-bottom: 3rem;
+        margin-bottom: 2.2rem;
         text-align: center;
         position: relative;
         display: inline-block;
@@ -193,6 +188,8 @@
         width: 60px;
         height: 3px;
         background: var(--primary-color);
+        opacity: 0.08;
+        border-radius: 2px;
       }
 
       .projects-grid {
@@ -203,10 +200,11 @@
       }
 
       .two-column-section {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
         gap: 4rem;
-        margin-top: 2rem;
+        margin-top: 1.2rem;
       }
 
       .column {
@@ -227,7 +225,7 @@
 
       .card-section h3 {
         font-size: 1.8rem;
-        margin: 0 auto;
+        margin: 0 auto 1.5rem auto;
         text-align: center;
       }
 
@@ -294,6 +292,8 @@
         font-weight: 400;
         color: var(--secondary-color);
         font-size: 0.95rem;
+        margin: 0 auto;
+        text-align: center;
       }
 
       .course-item {
@@ -357,7 +357,8 @@
         }
 
         .two-column-section {
-          grid-template-columns: 1fr;
+          flex-direction: column;
+          align-items: stretch;
           gap: 2rem;
         }
 
@@ -373,6 +374,14 @@
 
         .course-prof {
           text-align: left;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .two-column-section {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 2rem;
         }
       }
     </style>
@@ -392,15 +401,15 @@
               text-align: center;
             "
           >
-            AI & Data engineer with previous professional experience at World
-            Salon and InfiniteUp. Led development of machine learning systems
-            and scalable cloud infrastructure while contributing to funding
-            rounds. Previously conducted data analytics at KPMG focusing on
-            predictive modeling. Serving as Teaching Assistant for Discrete
-            Mathematics and Computer Security. Passionate about leveraging
-            artificial intelligence and innovative technology to solve complex
-            business challenges. Skilled in Python, Java, C/C++, and modern ML
-            frameworks.
+            Experienced AI engineer with a track record of thriving in
+            fast-paced startup environments, including World Salon and
+            InfiniteUp, where I led machine learning system development and
+            scalable cloud infrastructure projects that contributed to funding
+            rounds. Previously worked at KPMG conducting predictive analytics on
+            international insurance markets. Previously served as Teaching
+            Assistant for Discrete Math and Computer Security. Passionate about
+            applying innovative technologies to solve real-world business
+            challenges.
           </p>
           <div class="links">
             <a href="#" class="link-button">
