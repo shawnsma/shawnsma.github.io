@@ -119,7 +119,7 @@
           url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
         background-repeat: repeat;
         background-color: #f4f4f4;
-        background-blend-mode: multiply;
+        background-blend-mode: overlay;
         min-height: 100vh;
       }
 
@@ -282,12 +282,10 @@
       }
 
       .two-column-section {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-end;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 2rem;
         justify-content: center;
-        gap: 4rem;
-        margin-top: 1.2rem;
       }
 
       .column {
@@ -304,6 +302,9 @@
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         padding: 2rem;
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
       }
 
       .card-section h3 {
@@ -486,14 +487,13 @@
             "
           >
             Experienced AI engineer with a track record of thriving in
-            fast-paced startup environments, including World Salon and
-            InfiniteUp, where I led machine learning system development and
-            scalable cloud infrastructure projects that contributed to funding
-            rounds. Previously worked at KPMG conducting predictive analytics on
-            international insurance markets. Previously served as Teaching
-            Assistant for Discrete Math and Computer Security. Passionate about
-            applying innovative technologies to solve real-world business
-            challenges.
+            fast-paced startup environments (World Salon and InfiniteUp),
+            leading machine learning system development and scalable cloud
+            infrastructure projects that contributed to funding rounds.
+            Passionate about applying innovative technologies to solve
+            real-world business challenges. Prev. KPMG consulting intern
+            conducting predictive analytics. Prev. TA for Discrete Math and
+            Computer Security.
           </p>
           <div class="links">
             <a href="https://www.linkedin.com/in/shawnsma/" class="link-button">
