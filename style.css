@@ -51,6 +51,7 @@ src: url("../fonts/cormorant-garamond-v19-latin-700.woff2")
 margin: 0;
 padding: 0;
 box-sizing: border-box;
+cursor: none;
 }
 
 body {
@@ -130,7 +131,7 @@ animation: slideUp 1s ease-out 0.3s both;
 }
 
 .about-me-text {
-max-width: 630px;
+max-width: 600px;
 margin: 0 auto 2rem auto;
 font-size: 1.1rem;
 text-align: center;
@@ -437,11 +438,17 @@ h1 {
     left: 0;
     width: 14px;
     height: 14px;
-    background-color: rgba(0, 0, 0, 0.9);
+    border: 2.5px solid rgba(0, 0, 0, 0.8);
+    background-color: transparent;
     border-radius: 50%;
     pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out;
+    transform: var(--cursor-transform) scale(1);
+    transition: transform 0.05s ease-out;
     z-index: 9999;
-    mix-blend-mode: difference;
+    backdrop-filter: blur(1px);
+  }
+
+#custom-cursor.holding {
+    transform: var(--cursor-transform) scale(1.5);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
   }

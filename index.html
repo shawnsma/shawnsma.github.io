@@ -211,7 +211,7 @@
           </div>
           <div class="column">
             <div class="card-section">
-              <h3 style="text-align: center">Northeast Beer</h3>
+              <h3 style="text-align: center">Brewery Recs</h3>
               <div class="projects-list">
                 <a href="#" class="project-card">
                   <h3>Interest 1</h3>
@@ -231,15 +231,11 @@
       document.addEventListener("DOMContentLoaded", () => {
         const cursor = document.getElementById("custom-cursor");
 
-        if (!cursor) {
-          console.error("Custom cursor element not found.");
-          return;
-        }
-
         let mouseX = 0,
           mouseY = 0;
         let posX = 0,
           posY = 0;
+        let clickTimeout;
 
         document.addEventListener("mousemove", (e) => {
           mouseX = e.clientX;
@@ -247,13 +243,23 @@
         });
 
         function animate() {
-          posX += (mouseX - posX) * 0.15;
-          posY += (mouseY - posY) * 0.15;
-          cursor.style.transform = `translate(${posX}px, ${posY}px)`;
+          posX += (mouseX - posX) * 0.4;
+          posY += (mouseY - posY) * 0.4;
+          cursor.style.setProperty(
+            "--cursor-transform",
+            `translate(${posX}px, ${posY}px)`
+          );
           requestAnimationFrame(animate);
         }
 
         animate();
+        document.addEventListener("mousedown", () => {
+          cursor.classList.add("holding");
+        });
+
+        document.addEventListener("mouseup", () => {
+          cursor.classList.remove("holding");
+        });
       });
     </script>
   </body>
