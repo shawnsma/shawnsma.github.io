@@ -259,7 +259,16 @@
     <script>
         const map = L.map("beer-map").setView([42.36, -71.05], 7);
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 18,}).addTo(map);
+        maxZoom: 15,}).addTo(map);
+        fetch("https://personal-website-bhql.onrender.com/api/breweries")
+        .then((res) => res.json())
+        .then((breweries) => {
+            breweries.forEach(({ name, lat, lng }) => {
+                L.marker([lat, lng])
+                .addTo(map)
+                .bindPopup(`<b>${name}</b>`);
+            });
+            });
     </script>
   </body>
 </html>
