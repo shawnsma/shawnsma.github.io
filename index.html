@@ -212,15 +212,7 @@
           <div class="column">
             <div class="card-section">
               <h3 style="text-align: center">Brewery Recs</h3>
-              <div class="projects-list">
-                <a href="#" class="project-card">
-                  <h3>Interest 1</h3>
-                  <p>Description of non-CS interest or activity.</p>
-                </a>
-                <a href="#" class="project-card">
-                  <h3>Interest 2</h3>
-                  <p>Description of non-CS interest or activity.</p>
-                </a>
+              <div id="beer-map"></div>
               </div>
             </div>
           </div>
@@ -261,6 +253,13 @@
           cursor.classList.remove("holding");
         });
       });
+    </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script>
+        const map = L.map("beer-map").setView([42.36, -71.05], 7);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 18,}).addTo(map);
     </script>
   </body>
 </html>

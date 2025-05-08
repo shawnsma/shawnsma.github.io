@@ -452,3 +452,10 @@ h1 {
     transform: var(--cursor-transform) scale(1.5);
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
   }
+
+#beer-map {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: 10px;
+  overflow: hidden;
+}
