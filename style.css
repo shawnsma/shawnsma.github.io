@@ -1,0 +1,430 @@
+/* playfair-display-regular - latin */
+@font-face {
+font-display: swap;
+font-family: "Playfair Display";
+font-style: normal;
+font-weight: 400;
+src: url("../fonts/playfair-display-v37-latin-regular.woff2")
+    format("woff2");
+}
+/* playfair-display-700 - latin */
+@font-face {
+font-display: swap;
+font-family: "Playfair Display";
+font-style: normal;
+font-weight: 700;
+src: url("../fonts/playfair-display-v37-latin-700.woff2")
+    format("woff2");
+}
+
+/* cormorant-garamond-regular - latin */
+@font-face {
+font-display: swap;
+font-family: "Cormorant Garamond";
+font-style: normal;
+font-weight: 400;
+src: url("../fonts/cormorant-garamond-v19-latin-regular.woff2")
+    format("woff2");
+}
+/* cormorant-garamond-700 - latin */
+@font-face {
+font-display: swap;
+font-family: "Cormorant Garamond";
+font-style: normal;
+font-weight: 700;
+src: url("../fonts/cormorant-garamond-v19-latin-700.woff2")
+    format("woff2");
+}
+
+:root {
+--primary-color: #000000;
+--secondary-color: #333333;
+--background-color: #fcfcfc;
+--accent-color: #666666;
+--gradient-start: #f4f4f4;
+--gradient-end: #ffffff;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: "Playfair Display", serif;
+line-height: 1.6;
+color: var(--primary-color);
+background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 100%
+    ),
+    url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
+background-repeat: repeat;
+background-color: #f4f4f4;
+background-blend-mode: multiply;
+min-height: 100vh;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+}
+
+header {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+header::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.03) 0%,
+    rgba(0, 0, 0, 0) 70%
+);
+z-index: 0;
+}
+
+.hero {
+padding: 2rem 0;
+position: relative;
+z-index: 1;
+}
+
+h1 {
+font-size: 4rem;
+font-weight: 800;
+margin-bottom: 1rem;
+letter-spacing: -0.03em;
+background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+animation: fadeIn 1s ease-out;
+}
+
+.subtitle {
+font-size: 1.5rem;
+color: var(--secondary-color);
+margin-bottom: 2.5rem;
+font-weight: 500;
+animation: slideUp 1s ease-out 0.3s both;
+}
+
+.about-me-text {
+max-width: 630px;
+margin: 0 auto 2rem auto;
+font-size: 1.1rem;
+text-align: center;
+line-height: 1.65;
+}
+
+.small-note {
+margin-top: 1.2rem;
+font-size: 1rem;
+color: var(--secondary-color);
+}
+
+.links {
+margin-top: 3rem;
+display: flex;
+gap: 2rem;
+justify-content: center;
+flex-wrap: wrap;
+animation: slideUp 1s ease-out 0.6s both;
+}
+
+.link-button {
+display: inline-flex;
+align-items: center;
+gap: 0.8rem;
+padding: 1rem 2rem;
+border: 2px solid var(--primary-color);
+color: var(--primary-color);
+text-decoration: none;
+font-weight: 500;
+font-family: "Playfair Display", serif;
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+overflow: hidden;
+background: transparent;
+z-index: 1;
+border-radius: 50px;
+}
+
+.link-button i {
+font-size: 1.2rem;
+transition: transform 0.4s ease;
+}
+
+.link-button:hover i {
+transform: scale(1.2);
+}
+
+.link-button::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 0;
+height: 100%;
+background: var(--primary-color);
+transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+z-index: -1;
+border-radius: 50px;
+}
+
+.link-button:hover {
+color: var(--background-color);
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.link-button:hover::before {
+width: 100%;
+}
+
+section {
+padding: 3.5rem 0 2rem 0;
+position: relative;
+}
+section + section {
+margin-top: -1.5rem;
+}
+
+.section-title {
+font-family: "Cormorant Garamond", serif;
+font-size: 2.5rem;
+margin-bottom: 2.2rem;
+text-align: center;
+position: relative;
+display: inline-block;
+left: 50%;
+transform: translateX(-50%);
+font-weight: 700;
+}
+
+.section-title::after {
+content: "";
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 60px;
+height: 3px;
+background: var(--primary-color);
+opacity: 0.08;
+border-radius: 2px;
+}
+
+.projects-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 2.5rem;
+margin-top: 2rem;
+}
+
+.two-column-section {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+gap: 2rem;
+justify-content: center;
+}
+
+.column {
+display: flex;
+flex-direction: column;
+gap: 2.5rem;
+padding: 0;
+background: none;
+box-shadow: none;
+}
+
+.card-section {
+background: var(--background-color);
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+padding: 2rem;
+width: 100%;
+max-width: 700px;
+margin: 0 auto;
+}
+
+.card-section h3 {
+font-family: "Cormorant Garamond", serif;
+font-size: 1.8rem;
+margin: 0 auto 1.5rem auto;
+text-align: center;
+}
+
+.languages-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2rem;
+text-align: center;
+margin-bottom: 0;
+}
+
+.language-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+}
+
+.language-icon {
+font-size: 2.5rem;
+color: var(--primary-color);
+transition: transform 0.3s ease;
+}
+
+.language-icon:hover {
+transform: scale(1.1);
+}
+
+.language-name {
+font-size: 0.9rem;
+font-weight: 500;
+}
+
+.projects-list {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.project-card {
+padding: 1.5rem;
+border: 1px solid rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+background: var(--background-color);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+text-decoration: none;
+color: var(--primary-color);
+}
+
+.project-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h3 {
+font-size: 1.3rem;
+margin-bottom: 0.5rem;
+color: var(--primary-color);
+font-weight: 600;
+}
+
+.project-card p {
+font-weight: 400;
+color: var(--secondary-color);
+font-size: 0.95rem;
+margin: 0 auto;
+text-align: center;
+}
+
+.course-item {
+margin-bottom: 1.5rem;
+padding-bottom: 1.5rem;
+border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 1rem;
+}
+
+.course-item:last-child {
+margin-bottom: 0;
+padding-bottom: 0;
+border-bottom: none;
+}
+
+.course-name {
+font-weight: 600;
+}
+
+.course-prof {
+color: var(--secondary-color);
+font-size: 0.9rem;
+text-align: right;
+white-space: nowrap;
+}
+
+@keyframes fadeIn {
+from {
+    opacity: 0;
+}
+to {
+    opacity: 1;
+}
+}
+
+@keyframes slideUp {
+from {
+    opacity: 0;
+    transform: translateY(20px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+@media (max-width: 768px) {
+h1 {
+    font-size: 3rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+}
+
+.section-title {
+    font-size: 2rem;
+}
+
+.two-column-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+}
+
+.column {
+    gap: 2rem;
+}
+
+.course-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+}
+
+.course-prof {
+    text-align: left;
+}
+}
+
+@media (max-width: 900px) {
+.two-column-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+}
+}
