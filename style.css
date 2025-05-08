@@ -437,11 +437,11 @@ h1 {
     left: 0;
     width: 14px;
     height: 14px;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: red ;
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
     transition: transform 0.15s ease-out;
     z-index: 9999;
-    mix-blend-mode: difference;
+    mix-blend-mode: normal;
   }
