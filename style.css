@@ -443,5 +443,4 @@ h1 {
     transform: translate(-50%, -50%);
     transition: transform 0.15s ease-out;
     z-index: 9999;
-    mix-blend-mode: normal;
   }
