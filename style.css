@@ -43,6 +43,8 @@ src: url("../fonts/cormorant-garamond-v19-latin-700.woff2")
 --accent-color: #666666;
 --gradient-start: #f4f4f4;
 --gradient-end: #ffffff;
+--font-primary: "Playfair Display", serif;
+--font-secondary: "Cormorant Garamond", serif;
 }
 
 * {
@@ -52,7 +54,7 @@ box-sizing: border-box;
 }
 
 body {
-font-family: "Playfair Display", serif;
+font-family: var(--font-primary);
 line-height: 1.6;
 color: var(--primary-color);
 background: linear-gradient(
@@ -159,7 +161,7 @@ border: 2px solid var(--primary-color);
 color: var(--primary-color);
 text-decoration: none;
 font-weight: 500;
-font-family: "Playfair Display", serif;
+font-family: var(--font-primary);
 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 position: relative;
 overflow: hidden;
@@ -209,7 +211,7 @@ margin-top: -1.5rem;
 }
 
 .section-title {
-font-family: "Cormorant Garamond", serif;
+font-family: var(--font-secondary);
 font-size: 2.5rem;
 margin-bottom: 2.2rem;
 text-align: center;
@@ -267,7 +269,7 @@ margin: 0 auto;
 }
 
 .card-section h3 {
-font-family: "Cormorant Garamond", serif;
+font-family: var(--font-secondary);
 font-size: 1.8rem;
 margin: 0 auto 1.5rem auto;
 text-align: center;
@@ -428,3 +430,18 @@ h1 {
     gap: 2rem;
 }
 }
+
+#custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out;
+    z-index: 9999;
+    mix-blend-mode: difference;
+  }
