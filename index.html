@@ -187,7 +187,7 @@
         </div>
       </div>
     </section>
-    <section id="not-cs-section">
+    <section>
       <div class="container">
         <h2 class="section-title">Not Computer Science</h2>
         <div class="two-column-section">
@@ -206,6 +206,10 @@
                   <h3>Poetry</h3>
                   <p>Acorn Leaves</p>
                 </a>
+                <a href="#" class="project-card">
+                    <h3>Something</h3>
+                    <p>Something</p>
+                  </a>
               </div>
             </div>
           </div>
@@ -258,15 +262,30 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script>
         const map = L.map("beer-map").setView([42.36, -71.05], 7);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 15,}).addTo(map);
+        var CartoDB_Voyager = L.tileLayer(
+            "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+            {
+            attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: "abcd",
+            maxZoom: 15
+            }
+        );
+        CartoDB_Voyager.addTo(map);
         fetch("https://personal-website-bhql.onrender.com/api/breweries")
         .then((res) => res.json())
         .then((breweries) => {
             breweries.forEach(({ name, lat, lng }) => {
-                L.marker([lat, lng])
-                .addTo(map)
-                .bindPopup(`<b>${name}</b>`);
+                L.circleMarker([lat, lng], {
+                    radius: 6,
+                    fillColor: "#333",
+                    color: "#fff",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.7
+                    })
+                    .addTo(map)
+                    .bindPopup(`<b>${name}</b>`);
             });
             });
     </script>
