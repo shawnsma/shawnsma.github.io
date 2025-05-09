@@ -466,3 +466,10 @@ h1 {
   border-radius: 10px;
   overflow: hidden;
 }
+
+.beer-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }

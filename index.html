@@ -8,6 +8,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -276,17 +278,18 @@
         .then((res) => res.json())
         .then((breweries) => {
             breweries.forEach(({ name, lat, lng }) => {
-                L.circleMarker([lat, lng], {
-                    radius: 6,
-                    fillColor: "#333333",
-                    color: "#ffffff",
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.7,
-                    })
+                const iconHtml = `<ion-icon name="beer-outline" style="font-size: 24px; color: #333;"></ion-icon>`;
+                const icon = L.divIcon({
+                    html: iconHtml,
+                    className: 'beer-icon',
+                    iconSize: [24, 24],
+                    iconAnchor: [12, 12],
+                    popupAnchor: [0, -10]
+                });
+                L.marker([lat, lng], { icon })
                     .addTo(map)
                     .bindPopup(`<b>${name}</b>`);
-            });
+                });
             });
     </script>
   </body>
