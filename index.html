@@ -8,8 +8,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -104,7 +110,9 @@
                   class="project-card"
                 >
                   <h3>LinkedIn Scraper</h3>
-                  <p>Scrapes profiles in bulk using Selenium and BeautifulSoup</p>
+                  <p>
+                    Scrapes profiles in bulk using Selenium and BeautifulSoup
+                  </p>
                 </a>
                 <a
                   href="https://github.com/shawnsma/Blockchain"
@@ -207,29 +215,32 @@
                   <p>Acorn Leaves</p>
                 </a>
               </div>
-              </div>
-              <div class="card-section">
-                <h3 style="text-align: center">Interests</h3>
-                <ul class="interests-list">
-                  <li>Modern art and Japanese visual culture</li>
-                  <li>Craft beer tasting and brewery hopping</li>
-                  <li>Urban design, architecture, and aesthetics</li>
-                  <li>Creative writing and poetic experimentation</li>
-                  <li>Exploring AI’s intersection with humanities</li>
-                </ul>
-              </div>              
+            </div>
+
+            <div class="card-section">
+              <h3 style="text-align: center">Interests</h3>
+              <ul class="interests-list">
+                <li>
+                  Royal Yachting Association certified assistant sailing coach
+                </li>
+                <li>
+                  China Calligraphers Association certified level 9 calligrapher
+                </li>
+                <li>Espresso & cold brew, boardgames, Japanese literature</li>
+              </ul>
             </div>
           </div>
+
           <div class="column">
-            <div class="card-section">
+            <div class="card-section" style="height: 100%">
               <h3 style="text-align: center">Brewery Recs</h3>
               <div id="beer-map"></div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const cursor = document.getElementById("custom-cursor");
@@ -266,46 +277,51 @@
       });
     </script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
     <script>
-        const map = L.map("beer-map").setView([42.0, -73.5], 6.5);
-        var CartoDB_Voyager = L.tileLayer(
-            "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-            {
-            attribution:
-                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: "abcd",
-            maxZoom: 15
-            }
-        );
-        CartoDB_Voyager.addTo(map);
-        fetch("https://personal-website-bhql.onrender.com/api/breweries")
+      const map = L.map("beer-map").setView([42.0, -73.5], 6.5);
+      var CartoDB_Voyager = L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+        {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          subdomains: "abcd",
+          maxZoom: 15,
+        }
+      );
+      CartoDB_Voyager.addTo(map);
+      fetch("https://personal-website-bhql.onrender.com/api/breweries")
         .then((res) => res.json())
         .then((breweries) => {
-            breweries.forEach(({ name, lat, lng }) => {
-                const iconHtml = `<ion-icon name="beer-outline" style="font-size: 24px; color: #333;"></ion-icon>`;
-                const icon = L.divIcon({
-                    html: iconHtml,
-                    className: 'beer-icon',
-                    iconSize: [24, 24],
-                    iconAnchor: [12, 12],
-                    popupAnchor: [0, -10]
-                });
-                L.marker([lat, lng], { icon })
-                    .addTo(map)
-                    .bindPopup(`<b>${name}</b>`);
-                });
+          breweries.forEach(({ name, lat, lng }) => {
+            const iconHtml = `<ion-icon name="beer-outline" style="font-size: 24px; color: #333;"></ion-icon>`;
+            const icon = L.divIcon({
+              html: iconHtml,
+              className: "beer-icon",
+              iconSize: [24, 24],
+              iconAnchor: [12, 12],
+              popupAnchor: [0, -10],
             });
+            L.marker([lat, lng], { icon })
+              .addTo(map)
+              .bindPopup(`<b>${name}</b>`);
+          });
+        });
     </script>
     <footer>
-        <div class="container footer-content">
-          <p>&copy; 2025 Shawn Ma. All rights reserved.</p>
-          <div class="footer-links">
-            <a href="https://www.linkedin.com/in/shawnsma/" target="_blank">LinkedIn</a>
-            <a href="https://github.com/shawnshep" target="_blank">GitHub</a>
-            <a href="mailto:shawn.ma@duke.edu">Email</a>
-          </div>
+      <div class="container footer-content">
+        <p>&copy; 2025 Shawn Ma. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/shawnsma/" target="_blank"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/shawnshep" target="_blank">GitHub</a>
+          <a href="mailto:shawn.ma@duke.edu">Email</a>
         </div>
-      </footer>
+      </div>
+    </footer>
   </body>
 </html>

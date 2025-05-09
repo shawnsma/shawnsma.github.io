@@ -507,13 +507,30 @@ color: var(--accent-color);
 }
 
 .interests-list {
-list-style: disc;
+list-style: none;
 padding-left: 1.5rem;
 font-size: 1rem;
 color: var(--primary-color);
 line-height: 1.7;
 }
-  
+
 .interests-list li {
+position: relative;
 margin-bottom: 0.6rem;
+padding-left: 1.2rem;
 }
+
+.interests-list li::before {
+content: "→";
+position: absolute;
+left: 0;
+top: 0;
+color: var(--accent-color);
+font-weight: 600;
+}  
+
+@media (hover: none) and (pointer: coarse) {
+    #custom-cursor {
+      display: none !important;
+    }
+  }
