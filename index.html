@@ -257,8 +257,8 @@
         });
 
         function animate() {
-          posX += (mouseX - posX) * 0.4;
-          posY += (mouseY - posY) * 0.4;
+          posX += (mouseX - posX) * 0.3;
+          posY += (mouseY - posY) * 0.3;
           cursor.style.setProperty(
             "--cursor-transform",
             `translate(${posX}px, ${posY}px)`
@@ -282,7 +282,7 @@
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
     <script>
-      const map = L.map("beer-map").setView([42.0, -73.5], 6.5);
+      const map = L.map("beer-map").setView([42.0, -73.5], 6);
       var CartoDB_Voyager = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
         {
