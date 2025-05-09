@@ -505,3 +505,15 @@ transition: color 0.3s ease;
 .footer-links a:hover {
 color: var(--accent-color);
 }
+
+.interests-list {
+list-style: disc;
+padding-left: 1.5rem;
+font-size: 1rem;
+color: var(--primary-color);
+line-height: 1.7;
+}
+  
+.interests-list li {
+margin-bottom: 0.6rem;
+}
