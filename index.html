@@ -251,6 +251,12 @@
           <div class="column">
             <div class="card-section" style="height: 100%">
               <h3 style="text-align: center">Brewery Recs</h3>
+              <div
+                id="brewery-paywall"
+                style="display: none; text-align: center; padding: 12px"
+              >
+                Brewery map is not available on your plan.
+              </div>
               <div id="beer-map"></div>
             </div>
           </div>
@@ -298,47 +304,129 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
+
     <script>
-      const map = L.map("beer-map").setView([42.0, -73.5], 6);
-      var CartoDB_Voyager = L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-        {
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-          subdomains: "abcd",
-          maxZoom: 15,
-        }
-      );
-      CartoDB_Voyager.addTo(map);
-      fetch("https://personal-website-bhql.onrender.com/api/breweries")
-        .then((res) => res.json())
-        .then((breweries) => {
-          breweries.forEach(({ name, lat, lng }) => {
-            const iconHtml = `<ion-icon name="beer-outline" style="font-size: 24px; color: #333;"></ion-icon>`;
+      const BACKEND = "";
+      const CUSTOMER_ID = "customer-123";
+      const CUSTOMER_EMAIL = "shawn.ma@duke.edu";
+
+      async function j(url, opts) {
+        const r = await fetch(url, {
+          headers: { "Content-Type": "application/json" },
+          ...opts,
+        }); // set headers
+        if (!r.ok) throw new Error(await r.text());
+        return r.json();
+      }
+
+      async function ensureCustomer() {
+        await j(`${BACKEND}/api/stigg/customer`, {
+          method: "POST",
+          body: JSON.stringify({
+            customerId: CUSTOMER_ID,
+            email: CUSTOMER_EMAIL,
+          }),
+        });
+      }
+
+      async function getEntitlements() {
+        return j(
+          `${BACKEND}/api/stigg/entitlements?customerId=${encodeURIComponent(
+            CUSTOMER_ID
+          )}`
+        );
+      }
+
+      async function reportMapLoad() {
+        return j(`${BACKEND}/api/stigg/usage/map-load`, {
+          method: "POST",
+          body: JSON.stringify({ customerId: CUSTOMER_ID }),
+        });
+      }
+
+      async function reportMarkerClick() {
+        return j(`${BACKEND}/api/stigg/usage/marker-click`, {
+          method: "POST",
+          body: JSON.stringify({ customerId: CUSTOMER_ID }),
+        });
+      }
+
+      (async () => {
+        // runs immediately
+        try {
+          await ensureCustomer(); // ensure customer + free plan
+          const raw = await getEntitlements();
+          const ents = raw.cachedEntitlements || []; // array form of entitlements
+          const byId = (id) => ents.find((r) => r?.feature?.refId === id) || {}; // ent by id
+          const limitOf = (id) => {
+            const r = byId(id);
+            return r?.hasUnlimitedUsage ? null : r?.usageLimit ?? null;
+          }; // limit or unlimited by id
+          const usageOf = (id) => Number(byId(id)?.currentUsage ?? 0); // usage by id
+
+          const BOOL_ID = "brewery_map_enabled";
+          const CFG_ID = "brewery_max_results_v2";
+          const USE_ID = "brewery_map_loads";
+          // clicks are only reported and not restricted
+
+          const hasMap = Boolean(byId(BOOL_ID)?.hasAccess);
+          if (!hasMap) {
+            document.getElementById("brewery-paywall").style.display = "block";
+            document.getElementById("beer-map").style.display = "none";
+            return;
+          } // gate 1, access boolean
+
+          const maxResults = Number(limitOf(CFG_ID) ?? 10); // default to 10
+
+          const currentLoads = usageOf(USE_ID);
+          const limitLoads = limitOf(USE_ID); // null => unlimited
+          if (limitLoads !== null && currentLoads >= limitLoads) {
+            const pw = document.getElementById("brewery-paywall");
+            pw.textContent = "Map loads limit reached on your plan.";
+            pw.style.display = "block";
+            document.getElementById("beer-map").style.display = "none";
+            return;
+          } // gate 2, map usage meter, compare to limit
+
+          await reportMapLoad();
+
+          const map = L.map("beer-map").setView([42.0, -73.5], 6);
+          L.tileLayer(
+            "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+            {
+              attribution: "&copy; OpenStreetMap & CARTO",
+              subdomains: "abcd",
+              maxZoom: 15,
+            }
+          ).addTo(map); // render map if gates passed
+
+          const res = await fetch(
+            "https://personal-website-bhql.onrender.com/api/breweries"
+          );
+          const breweries = await res.json();
+          breweries.slice(0, maxResults).forEach(({ name, lat, lng }) => {
             const icon = L.divIcon({
-              html: iconHtml,
+              html: `<ion-icon name="beer-outline" style="font-size: 24px; color: #333;"></ion-icon>`,
               className: "beer-icon",
               iconSize: [24, 24],
               iconAnchor: [12, 12],
               popupAnchor: [0, -10],
             });
-            L.marker([lat, lng], { icon })
-              .addTo(map)
-              .bindPopup(`<b>${name}</b>`);
+            const marker = L.marker([lat, lng], { icon }).addTo(map);
+            marker.on("click", async () => {
+              await reportMarkerClick();
+              marker.bindPopup(`<b>${name}</b>`).openPopup();
+            });
           });
-        });
+        } catch (err) {
+          console.error("Init failed:", err);
+          const pw = document.getElementById("brewery-paywall");
+          pw.textContent =
+            "Error contacting backend. Check API key and planId.";
+          pw.style.display = "block";
+          document.getElementById("beer-map").style.display = "none";
+        }
+      })();
     </script>
-    <footer>
-      <div class="container footer-content">
-        <p>&copy; 2025 Shawn Ma. All rights reserved.</p>
-        <div class="footer-links">
-          <a href="https://www.linkedin.com/in/shawnsma/" target="_blank"
-            >LinkedIn</a
-          >
-          <a href="https://github.com/shawnshep" target="_blank">GitHub</a>
-          <a href="mailto:shawn.ma@duke.edu">Email</a>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
