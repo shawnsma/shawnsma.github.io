@@ -1,0 +1,12 @@
+title: Shawn
+theme: jekyll-theme-primer
+exclude:
+  - stigg-env
+  - .venv
+  - venv
+  - node_modules
+  - .git
+  - .github
+  - .DS_Store
+  - .env
+  - .python-version
