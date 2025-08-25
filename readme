@@ -28,16 +28,6 @@ The brewery map on the website is linked to **boolean, config, and metered featu
 
 ---
 
-## Project Structure
-
-.
-├── main.py # FastAPI backend (customer provisioning, entitlements, usage reporting)
-├── index.html # Frontend with map + entitlement logic
-├── requirements.txt # Python dependencies
-└── README.md # This document
-
----
-
 ## How It Works
 
 1. When the page loads, the frontend calls:
@@ -52,7 +42,7 @@ The brewery map on the website is linked to **boolean, config, and metered featu
    - It checks `brewery_map_loads` to ensure the load limit is not exceeded. If usage is within limits, it reports a new load event; if not, the paywall is shown.
    - On each marker click, it calls `POST /api/stigg/usage/marker-click` to report the event.
 
-3. The backend communicates with the Stigg GraphQL API using the server API key.  
+3. The backend communicates with the Stigg GraphQL API using the server API key.
    It handles customer provisioning, entitlements queries, and usage/event reporting.
 
 ## Next Steps
