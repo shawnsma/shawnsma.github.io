@@ -7,16 +7,16 @@ The brewery map on the website is linked to **boolean, config, and metered featu
 ## Features Implemented
 
 - **Boolean Feature** → `brewery_map_enabled`  
-   Whether the brewery map is shown
+  Whether the brewery map is shown.
 
 - **Config Feature** → `brewery_max_results_v2`  
-   Maximum number of breweries displayed
+  Maximum number of breweries displayed.
 
 - **Metered Feature** → `brewery_map_loads`  
-   Number of times a customer loads the map. If the customer has reached the plan limit, the map is hidden with a paywall message.
+  Number of times a customer loads the map. If the customer has reached the plan limit, the map is hidden with a paywall message.
 
 - **Metered Event** → `brewery_marker_clicks`  
-   Number of brewery markers a customer clicks. Each click is sent to Stigg as an event.
+  Number of brewery markers a customer clicks. Each click is sent to Stigg as an event.
 
 ---
 
