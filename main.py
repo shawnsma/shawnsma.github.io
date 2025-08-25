@@ -180,7 +180,7 @@ async def get_entitlements(customerId: str):
 async def report_marker_click(body: MarkerClickBody):
     q = """
     mutation ReportEvent($events: UsageEventsReportInput!) {
-      reportEvent(events: $events)
+    reportEvent(events: $events)
     }
     """
     vars = {
@@ -189,7 +189,6 @@ async def report_marker_click(body: MarkerClickBody):
                 {
                     "customerId": body.customerId,
                     "eventName": RAW_EVENT_NAME,
-                    "value": 1,
                     "idempotencyKey": str(uuid4()),
                 }
             ]
@@ -199,37 +198,22 @@ async def report_marker_click(body: MarkerClickBody):
     return {"ok": True, "result": data["reportEvent"]}
 
 @app.post("/api/stigg/usage/map-load")
-async def report_map_load(body: MapLoadBody):
-    Q_GET_ENT = """
-    query GetEntitlement($q: FetchEntitlementQuery!) {
-    entitlement(query: $q) {
-        currentUsage
-    }
-    }
-    """
-
-    Q_REPORT_USAGE = """
-    mutation ReportUsage($input: ReportUsageInput!) {
-    reportUsage(input: $input) { id }
-    }
-    """
-    cid = body.customerId
-    if not cid:
+async def report_map_load(payload: dict = Body(...)):
+    customer_id = payload.get("customerId")
+    if not customer_id:
         raise HTTPException(400, "customerId required")
 
-    # fetch current usage
-    data = await gql(Q_GET_ENT, {"q": {"customerId": cid, "featureId": FEATURE_METERED_USAGE}})
-    cur = int(((data or {}).get("entitlement") or {}).get("currentUsage") or 0)
-
-    # compute new absolute total
-    new_total = cur + 1
-
-    # send new total
-    out = await gql(Q_REPORT_USAGE, {"input": {
-        "customerId": cid,
-        "featureId": FEATURE_METERED_USAGE,
-        "value": new_total
-    }})
-    return {"ok": True, "total": new_total, "result": out["reportUsage"]}
-
-app.mount("/", StaticFiles(directory=".", html=True), name="root")
+    query = """
+    mutation ReportUsage($input: ReportUsageInput!) {
+      reportUsage(input: $input) { id }
+    }
+    """
+    variables = {
+        "input": {
+            "customerId": customer_id,
+            "featureId": FEATURE_METERED_USAGE,
+            "value": 1
+        }
+    }
+    data = await gql(query, variables)
+    return {"ok": True, "id": data.get("reportUsage", {}).get("id")}

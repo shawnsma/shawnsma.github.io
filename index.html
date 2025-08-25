@@ -355,6 +355,7 @@
         // runs immediately
         try {
           await ensureCustomer(); // ensure customer + free plan
+          await reportMapLoad();
           const raw = await getEntitlements();
           const ents = raw.cachedEntitlements || []; // array form of entitlements
           const byId = (id) => ents.find((r) => r?.feature?.refId === id) || {}; // ent by id
@@ -375,8 +376,6 @@
             document.getElementById("beer-map").style.display = "none";
             return;
           } // gate 1, access boolean
-
-          await reportMapLoad();
 
           const maxResults = Number(limitOf(CFG_ID) ?? 10); // default to 10
 
