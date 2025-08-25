@@ -32,7 +32,7 @@ The brewery map on the website is linked to **boolean, config, and metered featu
 
 1. When the page loads, the frontend calls:
 
-   - `POST /api/stigg/customer` → ensures the customer exists and is subscribed to a base plan.
+   - `POST /api/stigg/customer` → ensures the customer exists and is subscribed to a plan.
    - `GET /api/stigg/entitlements` → fetches all active entitlements for the customer.
 
 2. The frontend enforces entitlements:
