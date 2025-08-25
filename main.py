@@ -3,6 +3,8 @@ from uuid import uuid4
 from typing import Any, Dict
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import httpx
 from pathlib import Path
@@ -35,6 +37,7 @@ app.add_middleware(
     allow_methods=["*"], # HTTP methods
     allow_headers=["*"], # custom headers
 ) # change in prod
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # pydantic models, santize inputs
 class CustomerBody(BaseModel):
@@ -73,6 +76,10 @@ async def gql(query: str, variables: Dict[str, Any]) -> Dict[str, Any]:
 @app.get("/api/stigg/health")
 def health():
     return {"ok": True}
+
+@app.get("/")
+def root():
+    return FileResponse(Path(__file__).with_name("index.html"))
 
 # -------- Routes --------
 @app.post("/api/stigg/customer")
