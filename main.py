@@ -37,7 +37,6 @@ app.add_middleware(
     allow_methods=["*"], # HTTP methods
     allow_headers=["*"], # custom headers
 ) # change in prod
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # pydantic models, santize inputs
 class CustomerBody(BaseModel):
@@ -54,7 +53,6 @@ class MarkerClickBody(BaseModel):
 
 class MapLoadBody(BaseModel):
     customerId: str
-    totalLoads: int
 
 # wrapper for all following HTTP requests
 async def gql(query: str, variables: Dict[str, Any]) -> Dict[str, Any]:
@@ -163,25 +161,16 @@ async def subscribe(payload: dict = Body(...)):
 async def get_entitlements(customerId: str):
     q = """
     query GetEntitlements($query: FetchEntitlementsQuery!) {
-      cachedEntitlements(query: $query) {
-        feature {
-          refId
-          displayName
-          featureUnits
-          featureUnitsPlural
-          featureType
-          meterType
-          description
-        }
+    cachedEntitlements(query: $query) {
+        feature { refId displayName featureType meterType description }
         currentUsage
-        customerId
         usageLimit
         hasUnlimitedUsage
         usagePeriodAnchor
         usagePeriodStart
         usagePeriodEnd
         resetPeriod
-      }
+    }
     }
     """
     data = await gql(q, {"query": {"customerId": customerId}})
@@ -211,15 +200,36 @@ async def report_marker_click(body: MarkerClickBody):
 
 @app.post("/api/stigg/usage/map-load")
 async def report_map_load(body: MapLoadBody):
-    q = """
-    mutation ReportEvent($events: UsageEventsReportInput!) {
-      reportEvent(events: $events)
+    Q_GET_ENT = """
+    query GetEntitlement($q: FetchEntitlementQuery!) {
+    entitlement(query: $q) {
+        currentUsage
+    }
     }
     """
-    vars = {"input": {
-        "customerId": body.customerId,
+
+    Q_REPORT_USAGE = """
+    mutation ReportUsage($input: ReportUsageInput!) {
+    reportUsage(input: $input) { id }
+    }
+    """
+    cid = body.customerId
+    if not cid:
+        raise HTTPException(400, "customerId required")
+
+    # fetch current usage
+    data = await gql(Q_GET_ENT, {"q": {"customerId": cid, "featureId": FEATURE_METERED_USAGE}})
+    cur = int(((data or {}).get("entitlement") or {}).get("currentUsage") or 0)
+
+    # compute new absolute total
+    new_total = cur + 1
+
+    # send new total
+    out = await gql(Q_REPORT_USAGE, {"input": {
+        "customerId": cid,
         "featureId": FEATURE_METERED_USAGE,
-        "value": body.totalLoads
-    }}
-    data = await gql(q, vars)
-    return data["reportUsage"]
+        "value": new_total
+    }})
+    return {"ok": True, "total": new_total, "result": out["reportUsage"]}
+
+app.mount("/", StaticFiles(directory=".", html=True), name="root")
