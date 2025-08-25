@@ -355,7 +355,6 @@
         // runs immediately
         try {
           await ensureCustomer(); // ensure customer + free plan
-          await reportMapLoad();
           const raw = await getEntitlements();
           const ents = raw.cachedEntitlements || []; // array form of entitlements
           const byId = (id) => ents.find((r) => r?.feature?.refId === id) || {}; // ent by id
@@ -389,12 +388,7 @@
             return;
           } // gate 2, map usage meter, compare to limit
 
-          async function reportMapLoad() {
-            return j(`${BACKEND}/api/stigg/usage/map-load`, {
-              method: "POST",
-              body: JSON.stringify({ customerId: CUSTOMER_ID }),
-            });
-          }
+          await reportMapLoad();
 
           const map = L.map("beer-map").setView([42.0, -73.5], 6);
           L.tileLayer(
@@ -406,24 +400,24 @@
             }
           ).addTo(map); // render map if gates passed
 
-          const res = await fetch(
-            "https://personal-website-bhql.onrender.com/api/breweries"
-          );
+          const res = await fetch(`${BACKEND}/api/breweries`);
           const breweries = await res.json();
-          breweries.slice(0, maxResults).forEach(({ name, lat, lng }) => {
-            const icon = L.divIcon({
-              html: `<ion-icon name="beer-outline" style="font-size: 24px; color: #333;"></ion-icon>`,
-              className: "beer-icon",
-              iconSize: [24, 24],
-              iconAnchor: [12, 12],
-              popupAnchor: [0, -10],
+          (Array.isArray(breweries) ? breweries : [])
+            .slice(0, maxResults)
+            .forEach(({ name, lat, lng }) => {
+              const icon = L.divIcon({
+                html: `<ion-icon name="beer-outline" style="font-size: 24px; color: #333;"></ion-icon>`,
+                className: "beer-icon",
+                iconSize: [24, 24],
+                iconAnchor: [12, 12],
+                popupAnchor: [0, -10],
+              });
+              const marker = L.marker([lat, lng], { icon }).addTo(map);
+              marker.on("click", async () => {
+                await reportMarkerClick();
+                marker.bindPopup(`<b>${name}</b>`).openPopup();
+              });
             });
-            const marker = L.marker([lat, lng], { icon }).addTo(map);
-            marker.on("click", async () => {
-              await reportMarkerClick();
-              marker.bindPopup(`<b>${name}</b>`).openPopup();
-            });
-          });
         } catch (err) {
           console.error("Init failed:", err);
           const pw = document.getElementById("brewery-paywall");
