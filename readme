@@ -1,0 +1,62 @@
+# Stigg Integration
+
+The brewery map on the website is linked to **boolean, config, and metered features** provided by Stigg.
+
+---
+
+## Features Implemented
+
+- **Boolean Feature** → `brewery_map_enabled`  
+   Whether the brewery map is shown
+
+- **Config Feature** → `brewery_max_results_v2`  
+   Maximum number of breweries displayed
+
+- **Metered Feature** → `brewery_map_loads`  
+   Number of times a customer loads the map. If the customer has reached the plan limit, the map is hidden with a paywall message.
+
+- **Metered Event** → `brewery_marker_clicks`  
+   Number of brewery markers a customer clicks. Each click is sent to Stigg as an event.
+
+---
+
+## Tech Stack
+
+- **Backend:** [FastAPI](https://fastapi.tiangolo.com/) (Python)
+- **Frontend:** Vanilla HTML + JavaScript with [Leaflet.js](https://leafletjs.com/) for interactive maps
+- **Entitlements & Usage:** [Stigg](https://stigg.io/) API
+
+---
+
+## Project Structure
+
+.
+├── main.py # FastAPI backend (customer provisioning, entitlements, usage reporting)
+├── index.html # Frontend with map + entitlement logic
+├── requirements.txt # Python dependencies
+└── README.md # This document
+
+---
+
+## How It Works
+
+1. When the page loads, the frontend calls:
+
+   - `POST /api/stigg/customer` → ensures the customer exists and is subscribed to a base plan.
+   - `GET /api/stigg/entitlements` → fetches all active entitlements for the customer.
+
+2. The frontend enforces entitlements:
+
+   - If `brewery_map_enabled` is **false**, the paywall is shown and the map is hidden.
+   - It reads `brewery_max_results_v2` to cap the number of breweries rendered.
+   - It checks `brewery_map_loads` to ensure the load limit is not exceeded. If usage is within limits, it reports a new load event; if not, the paywall is shown.
+   - On each marker click, it calls `POST /api/stigg/usage/marker-click` to report the event.
+
+3. The backend communicates with the Stigg GraphQL API using the server API key.  
+   It handles customer provisioning, entitlements queries, and usage/event reporting.
+
+## Next Steps
+
+- **Expose usage in the UI:** Show current usage vs. limit for each feature (e.g., “Map loads: 3 / 100 this month”).
+- **Upgrade flow:** Replace the placeholder paywall with a real call-to-action that links to an upgrade or checkout page.
+- **Authentication:** Replace the hard-coded `customerId` with a real login flow, so each user sees their own entitlements and usage.
