@@ -143,6 +143,20 @@ outline: 6px solid rgba(0, 0, 0, 0.03);
 outline-offset: 6px;
 }
 
+.hero-photo.is-missing {
+display: grid;
+place-items: center;
+}
+
+.hero-photo.is-missing::after {
+content: "SM";
+font-family: var(--font-primary);
+font-weight: 700;
+font-size: 3rem;
+letter-spacing: -0.04em;
+color: rgba(0, 0, 0, 0.45);
+}
+
 .hero-headshot {
 width: 100%;
 height: 100%;
