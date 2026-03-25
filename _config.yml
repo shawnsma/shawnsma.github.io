@@ -1,7 +1,6 @@
-title: stigg
+title: Shawn Shep
 theme: jekyll-theme-primer
 exclude:
-  - stigg-env
   - .venv
   - venv
   - node_modules
