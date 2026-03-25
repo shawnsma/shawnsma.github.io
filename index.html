@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script
@@ -34,36 +34,52 @@
     <div id="custom-cursor"></div>
     <header>
       <div class="container">
-        <div class="hero">
-          <h1>Shawn Ma</h1>
-          <p class="subtitle">Duke CS '26, AI & ML Concentration</p>
-          <p class="about-me-text">
-            AI engineer with experience leading projects in early-stage startups
-            and large organizations. At World Salon and InfiniteUp, built
-            production-ready ML systems, cloud infrastructure, and
-            customer-facing tools that supported funding rounds and client
-            adoption. At Link Logistics, scaled geospatial analytics to evaluate
-            properties and fine-tuned models to extract zoning insights.
-          </p>
-          <p class="about-me-text small-note">
-            Ex-KPMG consulting intern conducting predictive analytics<br />
-            TA for Computer Security, Database Systems, Computer Architecture,
-            and Discrete Math
-          </p>
+        <div class="hero-grid">
+          <div class="hero hero-content">
+            <h1>Shawn Ma</h1>
+            <p class="subtitle">Duke CS '26, AI & ML Concentration</p>
+            <p class="about-me-text">
+              AI engineer with experience leading projects in early-stage
+              startups and large organizations. At World Salon and InfiniteUp,
+              built production-ready ML systems, cloud infrastructure, and
+              customer-facing tools that supported funding rounds and client
+              adoption. At Link Logistics, scaled geospatial analytics to
+              evaluate properties and fine-tuned models to extract zoning
+              insights.
+            </p>
+            <p class="about-me-text small-note">
+              Ex-KPMG consulting intern conducting predictive analytics<br />
+              TA for Computer Security, Database Systems, Computer Architecture,
+              and Discrete Math
+            </p>
 
-          <div class="links">
-            <a href="https://www.linkedin.com/in/shawnsma/" class="link-button">
-              <i class="fab fa-linkedin"></i>
-              LinkedIn
-            </a>
-            <a href="https://github.com/shawnshep" class="link-button">
-              <i class="fab fa-github"></i>
-              GitHub
-            </a>
-            <a href="mailto:shawn.ma@duke.edu" class="link-button">
-              <i class="fas fa-envelope"></i>
-              Connect
-            </a>
+            <div class="links">
+              <a
+                href="https://www.linkedin.com/in/shawnsma/"
+                class="link-button"
+              >
+                <i class="fab fa-linkedin"></i>
+                LinkedIn
+              </a>
+              <a href="https://github.com/shawnshep" class="link-button">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+              <a href="mailto:shawn.ma@duke.edu" class="link-button">
+                <i class="fas fa-envelope"></i>
+                Connect
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-photo" aria-label="Portrait photo">
+            <img
+              class="hero-headshot"
+              src="headshot.JPG"
+              alt="Photo of Shawn Ma"
+              loading="eager"
+              decoding="async"
+            />
           </div>
         </div>
       </div>
@@ -298,7 +314,7 @@
           posY += (mouseY - posY) * 0.3;
           cursor.style.setProperty(
             "--cursor-transform",
-            `translate(${posX}px, ${posY}px)`
+            `translate(${posX}px, ${posY}px)`,
           );
           requestAnimationFrame(animate);
         }
@@ -330,7 +346,7 @@
               attribution: "&copy; OpenStreetMap & CARTO",
               subdomains: "abcd",
               maxZoom: 15,
-            }
+            },
           ).addTo(map);
 
           const res = await fetch(`${BACKEND}/api/breweries`);
