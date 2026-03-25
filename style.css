@@ -118,20 +118,29 @@ position: relative;
 z-index: 1;
 }
 
+.hero-left {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1.5rem;
+}
+
 .hero-content {
 padding: 0;
 }
 
 .hero-photo {
-width: min(360px, 80vw);
-aspect-ratio: 1 / 1.1;
-border-radius: 18px;
+width: min(260px, 70vw);
+aspect-ratio: 1 / 1;
+border-radius: 999px;
 overflow: hidden;
-background: rgba(255, 255, 255, 0.55);
+background: rgba(255, 255, 255, 0.6);
 box-shadow:
-  0 18px 35px rgba(0, 0, 0, 0.08),
-  0 3px 10px rgba(0, 0, 0, 0.06);
-border: 1px solid rgba(0, 0, 0, 0.08);
+  0 22px 40px rgba(0, 0, 0, 0.12),
+  0 4px 12px rgba(0, 0, 0, 0.06);
+border: 1px solid rgba(0, 0, 0, 0.12);
+outline: 6px solid rgba(0, 0, 0, 0.03);
+outline-offset: 6px;
 }
 
 .hero-headshot {
@@ -141,6 +150,20 @@ object-fit: cover;
 object-position: center;
 display: block;
 filter: saturate(0.98) contrast(1.02);
+}
+
+.hero-links {
+margin-top: 0.25rem;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+align-items: stretch;
+width: min(300px, 85vw);
+}
+
+.hero-links .link-button {
+justify-content: center;
+width: 100%;
 }
 
 h1 {
@@ -473,9 +496,13 @@ header {
 }
 
 .hero-grid {
-    grid-template-columns: minmax(420px, 1.25fr) minmax(260px, 0.75fr);
+    grid-template-columns: minmax(260px, 0.65fr) minmax(520px, 1.35fr);
     gap: 4rem;
     justify-items: stretch;
+}
+
+.hero-left {
+    align-items: flex-start;
 }
 
 .about-me-text {
@@ -484,13 +511,12 @@ header {
     text-align: left;
 }
 
-.links {
-    justify-content: flex-start;
+.hero-links {
+    width: 260px;
 }
 
 .hero-photo {
-    justify-self: end;
-    width: min(420px, 36vw);
+    width: 240px;
 }
 }
 
