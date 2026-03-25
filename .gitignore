@@ -2,3 +2,7 @@
 .venv/
 venv/
 node_modules/
+stigg-env/
+.venv311/
+__pycache__/
+.DS_Store

@@ -1,8 +1,10 @@
-title: Shawn Shep
+title: Personal Website
 theme: jekyll-theme-primer
 exclude:
   - .venv
+  - .venv311
   - venv
+  - stigg-env
   - node_modules
   - .git
   - .github
