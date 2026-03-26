@@ -108,29 +108,39 @@ z-index: 1;
 }
 
 .hero-grid {
-display: grid;
-grid-template-columns: 1fr;
+display: flex;
+flex-direction: column;
 gap: 3rem;
-align-items: center;
-justify-items: center;
+align-items: stretch;
+justify-items: stretch;
 padding: 2rem 0;
 position: relative;
 z-index: 1;
 }
 
-.hero-left {
+.hero-top-row {
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 1.5rem;
+gap: 1.25rem;
+text-align: center;
 }
 
-.hero-content {
-padding: 0;
+.hero-titles {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.hero-bottom-row {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1.75rem;
 }
 
 .hero-photo {
-width: min(500px, 70vw);
+width: clamp(240px, 26vw, 480px);
 aspect-ratio: 1 / 1;
 border-radius: 999px;
 overflow: hidden;
@@ -167,10 +177,9 @@ filter: saturate(0.98) contrast(1.02);
 }
 
 .hero-links {
-margin-top: 0.25rem;
 display: flex;
 flex-direction: column;
-gap: 0.5rem;
+gap: 1.5rem;
 align-items: stretch;
 width: min(300px, 85vw);
 }
@@ -178,6 +187,17 @@ width: min(300px, 85vw);
 .hero-links .link-button {
 justify-content: center;
 width: 100%;
+}
+
+.hero-description {
+width: 100%;
+max-width: 560px;
+}
+
+.hero-description .about-me-text {
+margin-left: 0;
+margin-right: 0;
+text-align: left;
 }
 
 h1 {
@@ -230,7 +250,7 @@ animation: slideUp 1s ease-out 0.6s both;
 .link-button {
 display: inline-flex;
 align-items: center;
-gap: 0.8rem;
+gap: 0.5rem;
 padding: 0.7rem 1.4rem;
 border: 2px solid var(--primary-color);
 color: var(--primary-color);
@@ -509,14 +529,23 @@ header {
     text-align: left;
 }
 
-.hero-grid {
-    grid-template-columns: minmax(260px, 0.65fr) minmax(520px, 1.35fr);
+.hero-top-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
     gap: 4rem;
-    justify-items: stretch;
+    align-items: center;
+    text-align: left;
 }
 
-.hero-left {
+.hero-titles {
     align-items: flex-start;
+}
+
+.hero-bottom-row {
+    display: grid;
+    grid-template-columns: minmax(0, clamp(320px, 25vw, 550px)) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
 }
 
 .about-me-text {
@@ -527,10 +556,15 @@ header {
 
 .hero-links {
     width: 260px;
+    justify-self: center;
 }
 
 .hero-photo {
-    width: 240px;
+    width: clamp(320px, 25vw, 550px);
+}
+
+.hero-description {
+    margin-top: -7.5rem;
 }
 }
 
